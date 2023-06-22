@@ -8,7 +8,9 @@ services:
       MYSQL_DATABASE : user_db
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+      - "3306:3306"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -30,4 +32,5 @@ services:
       - db
 volumes:
   db:
+
 
