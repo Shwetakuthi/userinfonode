@@ -4,33 +4,30 @@ services:
     image: "mysql:8.0"
     container_name: userinfomysql-container
     restart: always
-    volumes:
-      - db:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - 3306:3306
     environment: 
       -MYSQL_DATABASE : user_db
       -MYSQL_ROOT_PASSWORD: root
-
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
   userinfo-node:
     image: "node-image:1"
     container_name: nodejs-container
+    environment:
+      DB_HOST: db
+      DB_NAME: user_db
+      DB_PORT : 3306
+      DB_USER: root
+      DB_PASSWORD : root
     depends_on:
      - db
-    hostname: localhost
-    restart: always
     ports:
       - 3010:80
-    environment:
-      host: db
-      database: user_db
-      port : 3306
-      user: root
-      password : root
+    restart: always
     links:
       - db
-
 volumes:
   db:
 
