@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  db:
+    image: "mysql:8.0"
+    container_name: userinfomysql-container
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 3306:3306
+    environment: 
+      -MYSQL_DATABASE : user_db
+      -MYSQL_ROOT_PASSWORD: root
+
+  userinfo-node:
+    image: "nodejs-image:latest"
+    container_name: nodejs-container
+    depends_on:
+     - db
+    hostname: localhost
+    restart: always
+    ports:
+      - 3010:80
+    environment:
+      host: db
+      database: user_db
+      port : 3306
+      user: root
+      password : root
+    links:
+      - db
+
+volumes:
+  db:
+

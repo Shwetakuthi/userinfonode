@@ -1,17 +1,20 @@
+//follow this tutorial
+//https://geshan.com.np/blog/2022/02/mysql-docker-compose/
+//https://geshan.com.np/blog/2019/11/how-to-use-docker-multi-stage-build/
+//https://geshan.com.np/blog/2020/11/nodejs-with-docker/
+//https://geshan.com.np/blog/2020/11/nodejs-mysql-tutorial/
+//https://wkrzywiec.medium.com/how-to-run-database-backend-and-frontend-in-a-single-click-with-docker-compose-4bcda66f6de
+
+
 var http = require("http");
 var express = require('express');
 var app = express();
 var mysql      = require('mysql2');
 var bodyParser = require('body-parser');
+const config = require('./config');
 
 //start mysql connection
-var connection = mysql.createConnection({
-  host     : 'localhost', //mysql database host name
-  port     : '3306',
-  user     : 'root', //mysql database user name
-  password : 'root', //mysql database password
-  database : 'user_db' //mysql database name
-});
+var connection = mysql.createConnection(config.db);
 
 connection.connect(function(err) {
   if (err) throw err
@@ -27,7 +30,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //end body-parser configuration
 
 //create app server
-var server = app.listen(3010,  "127.0.0.1", function () {
+var server = app.listen(3010, function () {
 
   var host = server.address().address
   var port = server.address().port
