@@ -2,7 +2,7 @@ version: '3.3'
 services:
   db:
     image: "mysql:8.0"
-    #container_name: userinfomysql-container
+    container_name: userinfomysql-container
     #hostname: localhost
     restart: always
     #command: "--bind-address 127.0.0.1"
