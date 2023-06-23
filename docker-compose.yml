@@ -5,10 +5,10 @@ services:
     container_name: userinfomysql-container
     restart: always
     environment: 
-      MYSQL_DATABASE : user_db
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE : "user_db"
+      MYSQL_ROOT_PASSWORD: "root"
     ports:
-      - "3306:3306"
+      - '3306:3306'
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
