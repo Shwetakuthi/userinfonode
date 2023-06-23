@@ -27,7 +27,7 @@ services:
     depends_on:
      - db
     environment:
-      DB_HOST: userinfomysql-container
+      DB_HOST: localhost
       DB_NAME: user_db
       DB_PORT : 3306
       DB_USER: root
