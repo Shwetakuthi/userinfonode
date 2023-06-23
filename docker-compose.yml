@@ -6,7 +6,6 @@ services:
     hostname: localhost
     restart: always
     command: "--bind-address 127.0.0.1"
-    network_mode: host
     environment: 
       MYSQL_DATABASE : user_db
       MYSQL_ROOT_PASSWORD: root
@@ -23,7 +22,6 @@ services:
     container_name: nodejs-container
     hostname: localhost
     restart: always
-    network_mode: host
     depends_on:
      - db
     environment:
