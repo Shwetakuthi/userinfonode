@@ -5,12 +5,14 @@ services:
     container_name: userinfomysql-container
     hostname: localhost
     restart: always
-    command: "--bind-address 0.0.0.0"
+    command: "--bind-address 127.0.0.1"
+    network_mode: host
     environment: 
       MYSQL_DATABASE : user_db
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - '3306:3306'
+      - 3306:3306
+      - 33060:33060
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
@@ -21,9 +23,11 @@ services:
     container_name: nodejs-container
     hostname: localhost
     restart: always
+    network_mode: host
     depends_on:
      - db
     environment:
+      DB_HOST: userinfomysql-container
       DB_NAME: user_db
       DB_PORT : 3306
       DB_USER: root
