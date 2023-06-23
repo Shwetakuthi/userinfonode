@@ -5,10 +5,10 @@ services:
     container_name: userinfomysql-container
     hostname: localhost
     restart: always
+    command: "--bind-address 0.0.0.0"
     environment: 
       MYSQL_DATABASE : user_db
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_ROOT_HOST: '%'
     ports:
       - '3306:3306'
     extra_hosts:
@@ -21,7 +21,6 @@ services:
     container_name: nodejs-container
     hostname: localhost
     restart: always
-    command: "--bind-address 0.0.0.0"
     depends_on:
      - db
     environment:
