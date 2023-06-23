@@ -31,7 +31,7 @@ services:
       DB_USER: root
       DB_PASSWORD : root
     ports:
-      - 3010:80
+      - 80:3010
     extra_hosts:
       - "host.docker.internal:host-gateway"
 volumes:
