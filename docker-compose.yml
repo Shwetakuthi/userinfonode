@@ -2,36 +2,36 @@ version: '3.3'
 services:
   db:
     image: "mysql:8.0"
-    container_name: userinfomysql-container
-    hostname: localhost
+    #container_name: userinfomysql-container
+    #hostname: localhost
     restart: always
-    command: "--bind-address 127.0.0.1"
+    #command: "--bind-address 127.0.0.1"
     environment: 
       MYSQL_DATABASE : user_db
       MYSQL_ROOT_PASSWORD: root
     ports:
       - 3306:3306
       - 33060:33060
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    #extra_hosts:
+    #  - "host.docker.internal:host-gateway"
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
   userinfo-node:
     image: "node-image:1"
     container_name: nodejs-container
-    hostname: localhost
+    #hostname: localhost
     restart: always
     depends_on:
      - db
     environment:
-      DB_HOST: localhost
+      DB_HOST: db
       DB_NAME: user_db
       DB_PORT : 3306
       DB_USER: root
       DB_PASSWORD : root
     ports:
-      - 3010:80
+      - 3010:3010
 volumes:
   db:
 

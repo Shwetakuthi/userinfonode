@@ -7,7 +7,7 @@ const config = {
         password : env.DB_PASSWORD || 'root',
         user : env.DB_USER || 'root',
         database : env.DB_NAME || 'user_db',
-        debug : env.debug || true,
+        debug : true,
    },
    listPerPage: env.LIST_PER_PAGE || 10,
 };
