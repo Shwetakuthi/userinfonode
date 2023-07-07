@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-deployment
+  labels:
+    apps: node-app
+spec:
+  replicas: 4
+  strategy: 
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apps: node-
+    spec:
+      containers:
+        -name: node-container
+        image: node-image:1
+        ports:
+          -name: http
+          containerPort : 3010
+          protocol: TCP
+        resources:
+            requests:
+              memory: "250Mi"
+              cpu: "250m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"

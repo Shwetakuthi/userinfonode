@@ -1,0 +1,11 @@
+apiversion : v1
+kind : ConfigMap
+metadata: 
+  name: db-config
+data:
+  DB_HOST : localhost
+  DB_PORT : 3306
+  DB_NAME: user_db
+  DB_USER: root
+
+
