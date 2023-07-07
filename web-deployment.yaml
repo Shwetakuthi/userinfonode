@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      labels: node-app
+      apps: node-app
   replicas: 4
   strategy: 
     type: RollingUpdate

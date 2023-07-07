@@ -22,7 +22,8 @@ spec:
               name: mysql
            envFrom:
             - configMapRef:
-                name: db-config
-              secretRef:
-                name: db-secret
+               name: db-config
+            - secretRef:
+               name: db-secret
+            
           
