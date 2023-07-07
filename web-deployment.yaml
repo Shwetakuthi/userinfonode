@@ -5,25 +5,30 @@ metadata:
   labels:
     apps: node-app
 spec:
+  selector:
+    matchLabels:
+      labels: node-app
   replicas: 4
   strategy: 
     type: RollingUpdate
   template:
     metadata:
       labels:
-        apps: node-
+        apps: node-app
     spec:
-      containers:
-        -name: node-container
-        image: node-image:1
-        ports:
-          -name: http
-          containerPort : 3010
-          protocol: TCP
-        resources:
+       containers:
+        -  name: node-app
+           image: shwetakuthi90/node-image:1
+           ports:
+            - name: http
+              containerPort: 3010
+              protocol: TCP
+           resources:
             requests:
-              memory: "250Mi"
-              cpu: "250m"
+              memory: 250Mi
+              cpu: 250m
             limits:
-              memory: "500Mi"
-              cpu: "500m"
+              memory: 250Mi
+              cpu: 500m
+
+        

@@ -15,18 +15,14 @@ spec:
         apps: db-app
     spec:
       containers:
-        -name: userinfo-db
-        image: mysql:8.0
-        ports: 
-          containerPort: 3306
-          name: "mysql"
-        envFrom:
-          -configMapRef:
-            name: db-config
-          -secretRef:
-            name: db-secret
-        resources:
-            limits:
-            memory: 4Gi
-            cpu: "2"
-
+        -  name: userinfo-db
+           image: mysql:8.0
+           ports:
+            - containerPort: 3306
+              name: mysql
+           envFrom:
+            - configMapRef:
+                name: db-config
+              secretRef:
+                name: db-secret
+          
