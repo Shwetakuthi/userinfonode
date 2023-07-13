@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-deployment
+  labels:
+    app: node-app
+spec:
+  selector:
+    matchLabels:
+      app: node-app
+  replicas: 4
+  strategy: 
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+       containers:
+        -  name: node-app
+           image: shwetakuthi90/node-image:2
+           ports:
+            - name: http
+              containerPort: 3010
+              protocol: TCP
+           envFrom:
+            - configMapRef:
+                name: db-config
+            - secretRef:
+                name: db-secret
+           resources:
+            requests:
+              memory: 250Mi
+              cpu: 250m
+            limits:
+              memory: 250Mi
+              cpu: 500m
+
+            
+              
+            
+
+        
