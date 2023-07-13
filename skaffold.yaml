@@ -1,0 +1,22 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: userinfonode
+build:
+  artifacts:
+    - image: mysql
+      docker:
+        dockerfile: Dockerfile
+    - image: shwetakuthi90/node-image
+      docker:
+        dockerfile: Dockerfile
+  tagPolicy:
+    sha256: {}
+manifests:
+  rawYaml:
+    - backend-service.yml
+    - db-deployment.yml
+    - persistentVolume.yml
+    - storageClass.yml
+    - volumeClaim.yml
+    - web-deployment.yml

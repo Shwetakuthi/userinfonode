@@ -23,6 +23,11 @@ spec:
             - name: http
               containerPort: 3010
               protocol: TCP
+           envFrom:
+            - configMapRef:
+                name: db-config
+            - secretRef:
+                name: db-secret
            resources:
             requests:
               memory: 250Mi
@@ -30,5 +35,9 @@ spec:
             limits:
               memory: 250Mi
               cpu: 500m
+
+            
+              
+            
 
         

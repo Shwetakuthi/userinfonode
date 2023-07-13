@@ -1,0 +1,14 @@
+apiVersion: v1 
+kind: Service
+metadata:
+  name: node-app-lb
+  labels:
+    app: node-app-lb
+spec:
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 3010
+  selector:
+    app: node-app
+  type: LoadBalancer

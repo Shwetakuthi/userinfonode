@@ -14,9 +14,16 @@ var bodyParser = require('body-parser');
 const config = require('./config');
 
 //start mysql connection
-var connection = mysql.createConnection(config.db);
+var connection = mysql.createConnection({
+	host: config.db.host,
+	port: config.db.port,
+	database: config.db.database,
+	user: config.db.user,
+	password: config.db.password});
 
 connection.connect(function(err) {
+console.log('conection svalue');
+console.log(config.db);
   if (err) throw err
   console.log('You are now connected with mysql database...')
 })

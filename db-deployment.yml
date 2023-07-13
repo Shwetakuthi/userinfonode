@@ -3,27 +3,31 @@ kind: Deployment
 metadata:
   name: mysql-deployment
   labels:
-    apps: db-app
+    apps: mysql
 spec:
   selector:
     matchLabels:
-      apps: db-app
+      apps: mysql
   replicas: 1
   template:
     metadata:
       labels:
-        apps: db-app
+        apps: mysql
     spec:
       containers:
-        -  name: userinfo-db
+        -  name: mysql
            image: mysql:8.0
+           volumeMounts:
+            - mountPath: "var/lib/mysql"
+              name: data-volume
            ports:
             - containerPort: 3306
-              name: mysql
            envFrom:
-            - configMapRef:
-               name: db-config
             - secretRef:
                name: db-secret
-            
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: pvc-storage-class
+              
           
